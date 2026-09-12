@@ -8,12 +8,36 @@
 /* ============================================================================
  *  OPCIONES FÁCILMENTE EDITABLES
  * ============================================================================
- *  ✏️ 1) SHOPIFY_CHECKOUT_URL: URL del carrito/checkout de tu tienda Shopify.
- *       Todos los botones "COMPRAR AHORA" (.btn-comprar) usan esta variable.
- *  ✏️ 2) PRICE: precio mostrado. No hace falta tocarlo también en el HTML.
+ *  Configuración central del checkout de Shopify.
+ *  Variable  ✏️ 1) PRICE: precio mostrado (pesos argentinos).
+ *  Variable  ✏️ 2) SHOPIFY_PRODUCT_URL: página del producto de Shopify.
  * ==========================================================================*/
-const SHOPIFY_CHECKOUT_URL = "https://metodocaptarpropiedades.com/cart";
 const PRICE = "14.999"; // ✏️ EDITAR AQUÍ (precio en pesos argentinos, ARS)
+
+/* ============================================================================
+ *  BOTONES DE COMPRA — página del producto en Shopify
+ * ==========================================================================*/
+const SHOPIFY_PRODUCT_URL = "https://metodocaptarpropiedades.com/products/libro"; // ✏️ EDITAR AQUÍ
+
+/**
+ * Conecta los 5 botones (.btn-comprar) a la página del producto de Shopify.
+ */
+function conectarBotonesShopify() {
+  document.querySelectorAll(".btn-comprar").forEach((button) => {
+    button.href = SHOPIFY_PRODUCT_URL;
+  });
+}
+
+/* ----------------------------------------------------------------------------
+ * Precio mostrado en la landing
+ * --------------------------------------------------------------------------*/
+
+/** Sustituye el precio en todos los elementos con [data-price]. */
+function aplicarPrecio() {
+  document.querySelectorAll("[data-price]").forEach((el) => {
+    el.textContent = PRICE;
+  });
+}
 
 /* Estado global */
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,31 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initGarantia();
   setFooterYear();
 });
-
-/* ----------------------------------------------------------------------------
- * Precio y botones de compra (Shopify)
- * --------------------------------------------------------------------------*/
-
-/** Sustituye el precio en todos los elementos con [data-price]. */
-function aplicarPrecio() {
-  document.querySelectorAll("[data-price]").forEach((el) => {
-    el.textContent = PRICE;
-  });
-}
-
-/**
- * Conecta los 5 botones de compra (.btn-comprar) al carrito de Shopify.
- * Navega en la misma pestaña: el usuario sale de la landing y entra al checkout.
- */
-function conectarBotonesShopify() {
-  document.querySelectorAll(".btn-comprar").forEach((button) => {
-    button.href = SHOPIFY_CHECKOUT_URL;
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = SHOPIFY_CHECKOUT_URL;
-    });
-  });
-}
 
 /* ----------------------------------------------------------------------------
  * Menú móvil

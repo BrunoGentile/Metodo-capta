@@ -909,6 +909,12 @@ button {
   letter-spacing: 0.04em;
 }
 
+.price__buybtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+}
+
 /* ---------- 12. FAQ ---------- */
 .faq__list {
   display: grid;
