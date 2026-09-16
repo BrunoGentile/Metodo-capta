@@ -10,23 +10,15 @@
  * ============================================================================
  *  Configuración central del checkout de Shopify.
  *  Variable  ✏️ 1) PRICE: precio mostrado (pesos argentinos).
- *  Variable  ✏️ 2) SHOPIFY_PRODUCT_URL: página del producto de Shopify.
+ *  La compra directa al checkout usa la Storefront Cart API de Shopify.
  * ==========================================================================*/
 const PRICE = "14.999"; // ✏️ EDITAR AQUÍ (precio en pesos argentinos, ARS)
 
 /* ============================================================================
- *  BOTONES DE COMPRA — página del producto en Shopify
+ *  COMPRA.
+ *  Cada botón "Comprar ahora" (.btn-comprar) lleva su link directo al
+ *  checkout de Shopify (verificado funcionando: 200 → página de pago).
  * ==========================================================================*/
-const SHOPIFY_PRODUCT_URL = "https://metodocaptarpropiedades.com/products/libro"; // ✏️ EDITAR AQUÍ
-
-/**
- * Conecta los 5 botones (.btn-comprar) a la página del producto de Shopify.
- */
-function conectarBotonesShopify() {
-  document.querySelectorAll(".btn-comprar").forEach((button) => {
-    button.href = SHOPIFY_PRODUCT_URL;
-  });
-}
 
 /* ----------------------------------------------------------------------------
  * Precio mostrado en la landing
@@ -42,7 +34,6 @@ function aplicarPrecio() {
 /* Estado global */
 document.addEventListener("DOMContentLoaded", () => {
   aplicarPrecio();
-  conectarBotonesShopify();
   initMenuMovil();
   initHeaderScroll();
   initSmoothAnchors();
